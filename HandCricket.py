@@ -2,7 +2,7 @@ import random
 
 def user_bat(target=None):
     user_score = 0
-    for i in range(30):  # 5 overs, 6 balls per over
+    for i in range(30):  # 30 balls
         while True:
             try:
                 user = int(input('Enter your choice between 0 to 6: '))
@@ -35,7 +35,7 @@ def user_bat(target=None):
 
 def com_bat(target=None):
     com_score = 0
-    for i in range(30):  # 5 overs, 6 balls per over
+    for i in range(30):  # 30 balls
         while True:
             try:
                 user = int(input('Enter your choice between 0 to 6: '))
