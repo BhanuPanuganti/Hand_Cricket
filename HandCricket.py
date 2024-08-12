@@ -2,7 +2,9 @@ import random
 
 def user_bat(target=None):
     user_score = 0
+    balls = 0
     for i in range(30):  # 30 balls
+        balls += 1
         while True:
             try:
                 user = int(input('Enter your choice between 0 to 6: '))
@@ -29,12 +31,18 @@ def user_bat(target=None):
             print(f"Your score is: {user_score}\n")
             if target and user_score > target:
                 break
+        
+        if balls >= 30 :
+            print("Innings completed")
+            break
 
     return user_score
 
 def com_bat(target=None):
     com_score = 0
+    balls = 0
     for i in range(30):  # 30 balls
+        balls += 1
         while True:
             try:
                 user = int(input('Enter your choice between 0 to 6: '))
@@ -61,6 +69,10 @@ def com_bat(target=None):
             print(f"Computer's score is: {com_score}\n")
             if target and com_score > target:
                 break
+        
+        if balls >= 30 :
+            print("Innings completed")
+            break
 
     return com_score
 
@@ -95,17 +107,18 @@ def hand_cricket():
     print(f"Your choice is: {user_oe}\n")
 
     choose = ['bat', 'bowl']
+    Bat_Bowl_1 = None
+    Bat_Bowl_2 = None
 
     if (you == 'even' and (com + user_oe) % 2 == 0) or (you == 'odd' and (com + user_oe) % 2 == 1):
         print("You win the toss, choose to bat or bowl\n")
-        Bat_Bowl_1 = input("Bat or Bowl? ").lower()
+        Bat_Bowl_1 = input("Bat or Bowl? - ").lower()
     else:
-        Bat_Bowl_1 = None
         Bat_Bowl_2 = random.choice(choose)
         print(f"Computer wins the toss and chooses to {Bat_Bowl_2}\n")
 
     if Bat_Bowl_1 == 'bat':
-        print("You are batting... Let the match begin\n")
+        print("\nYou are batting... Let the match begin\n")
         user_score = user_bat()
         print(f"Your final score is: {user_score}\n")
 
@@ -113,31 +126,39 @@ def hand_cricket():
         com_score = com_bat(target=user_score)
         print(f"Computer's final score is: {com_score}\n")
 
-        if com_score < user_score:
-            print("You won the match!!...YAYY!!\n")
-        elif com_score > user_score:
+        if user_score < com_score:
             print("Computer wins! Better luck next time.\n")
+            print("---------------------------------------------------")
+        elif user_score > com_score:
+            print("You won the match!!...YAYY!!\n")
+            print("---------------------------------------------------")
         else:
-            print("It's a tie!!")
+            print("It's a tie!!\n")
+            print("---------------------------------------------------")
+
 
     elif Bat_Bowl_2 == 'bat':
-        print("Computer is batting now...\n")
+        print("Computer is batting now...Let the match begin\n")
         com_score = com_bat()
         print(f"Computer's final score is: {com_score}\n")
 
-        print("You are batting... Let the match begin\n")
+        print("You are batting now...\n")
         user_score = user_bat(target=com_score)
         print(f"Your final score is: {user_score}\n")
         
-        if com_score < user_score:
-            print("You won the match!!...YAYY!!\n")
-        elif com_score > user_score:
+        if user_score < com_score:
             print("Computer wins! Better luck next time.\n")
+            print("---------------------------------------------------")
+        elif user_score > com_score:
+            print("You won the match!!...YAYY!!\n")
+            print("---------------------------------------------------")
         else:
-            print("It's a tie!!")
+            print("It's a tie!!\n")
+            print("---------------------------------------------------")
+
             
     elif Bat_Bowl_1 =='bowl':
-        print("Computer is batting... Let the match begin\n")
+        print("\nComputer is batting... Let the match begin\n")
         com_score = com_bat()
         print(f"Computer's final score is: {com_score}\n")
 
@@ -147,10 +168,14 @@ def hand_cricket():
 
         if user_score < com_score:
             print("Computer wins! Better luck next time.\n")
+            print("---------------------------------------------------")
         elif user_score > com_score:
             print("You won the match!!...YAYY!!\n")
+            print("---------------------------------------------------")
         else:
             print("It's a tie!!\n")
+            print("---------------------------------------------------")
+
 
     elif Bat_Bowl_2 =='bowl':
         
@@ -164,9 +189,12 @@ def hand_cricket():
 
         if user_score < com_score:
             print("Computer wins! Better luck next time.\n")
+            print("---------------------------------------------------")
         elif user_score > com_score:
             print("You won the match!!...YAYY!!\n")
+            print("---------------------------------------------------")
         else:
             print("It's a tie!!\n")
+            print("---------------------------------------------------")
 
 hand_cricket()
